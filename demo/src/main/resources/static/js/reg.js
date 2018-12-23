@@ -55,10 +55,27 @@ $(function () {
 
     })
 
-    $("input[name=code]").click(function () {
-            location.href="getCode";
-    })
+    $("input[name=aaabb]").click(function () {
+        var phone = $("input[name=uphone]").val();
+        if (null == phone || ""==phone ){
+            $("#sp1").text("手机号不能为空");
+        } else{
+            $.ajax({
+                type:"POST",
+                url: "sendSMS",
+                data:"phone="+phone,
+                success:function (msg) {
+                    var code = msg.code;
+                    alert(code);
+                }
+            });
 
+        }
+
+
+
+
+    })
 
 
 })

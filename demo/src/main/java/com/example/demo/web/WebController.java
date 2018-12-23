@@ -1,12 +1,14 @@
 package com.example.demo.web;
 
-import com.example.demo.entity.VerfifyCode;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.Utils.getCode;
+import com.example.demo.entity.ReturnContant;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.awt.image.BufferedImage;
-import java.io.*;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @program: demo
@@ -18,9 +20,8 @@ import java.io.*;
 @RequestMapping("/demo")
 public class WebController {
 
-
- @Autowired
- private VerfifyCode verfifyCode;
+ @Resource
+ private ReturnContant returnContant;
 
  @RequestMapping("/toIndex")
  public String toindex(){
@@ -38,15 +39,20 @@ public class WebController {
   return "protocol";
  }
 
- @RequestMapping("/getCode")
-public String getCode(){
-  ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-  BufferedImage verfifyCodeImage = verfifyCode.getImage();
-  String text = verfifyCode.getText();
-  verfifyCode.output(verfifyCodeImage,out);
-  return "reg";
-}
 
 
+ /**
+  * 根据获取到的手机号发送验证码
+  * @param request
+  * @param phone 获取的手机号码
+  * @return
+  */
+ @RequestMapping(value="/sendSMS",method= RequestMethod.POST)
+ public @ResponseBody ReturnContant sendSMS(HttpServletRequest request, String phone){
+  //根据获取到的手机号发送验证码
+  String code= getCode.getCode(phone);
+  returnContant.setStatus(1);
+  returnContant.setData(code);
+  return returnContant;
+ }
 }
