@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <script th:src="@{/js/jquery-3.3.1.js}" ></script>
+    <script th:src="@{/js/reg.js}" ></script>
+    <style>
+        a{
+        text-decoration: none;
+        color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <form action="" type="post">
+        手 机 号：<input type="text" name="uphone"/><span id="sp1"></span><br>
+        密    码：<input type="password" name="password"/>
+        <input type="button" name="change"/>
+        <span id="sp2"></span><br>
+        确认密码：<input type="password" name="password1"/><span id="sp3"></span><br>
+        验 证 码：<input type="text" name="reg"/><input type="button" value="生成验证码" name="code"/><span id="sp5"></span><br>
+        <input type="checkbox" name="protocol"/><a th:href="@{toProtocol}">阅读并接受《百度用户协议》及《百度隐私权保护声明》</a><span id="sp4"></span><br>
+        <input type="button" value="注册" name="tijiao"/>
+    </form>
+</body>
+</html>

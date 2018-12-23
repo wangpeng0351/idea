@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script th:src="@{/js/jquery-3.3.1.js}" ></script>
+
+</head>
+<body>
+
+                <input type="text" name="username" placeholder="手机"/><br>
+                <input type="text" name="password" placeholder="密码"/><br>
+                <input type="checkbox"/>下次自动登录<br>
+                <input type="submit" value="登录"/><br>
+                <input type="button" value="立即注册"/>
+                <a >忘记密码？</a>
+
+</body>
+
+<script>
+    $(function () {
+
+        $("input[type=button]").click(function () {
+            location.href="toReg"
+        })
+    })
+
+
+</script>
+</html>
